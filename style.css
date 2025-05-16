@@ -205,9 +205,13 @@ body.escuro .modal-conteudo {
   color: #e2e8f0;
 }
 body.escuro input {
- /* background: #4a5568;*/
+  background: #2d3748;
   color: #fff;
   /*border: 1px solid #718096;*/
+}
+
+body.escuro input::placeholder {
+  color: #a0aec0;
 }
 
 .modo-escuro-botao {
@@ -265,24 +269,32 @@ body.escuro .modal-conteudo {
   padding: 10px;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+  width: 100%;
+  max-width: 100%;
 }
 
 .teclado-numerico .teclas {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  max-width: 300px;
+  gap: 8px;
+  width: 100%;
+  max-width: 400px;
   margin: 0 auto;
+  padding: 0 10px;
 }
 
 .teclado-numerico button {
-  padding: 15px;
-  font-size: 20px;
+  padding: clamp(12px, 4vw, 20px);
+  font-size: clamp(16px, 5vw, 24px);
   border: none;
   background-color: white;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.2s;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .teclado-numerico button:active {
@@ -305,8 +317,54 @@ body.escuro .teclado-numerico {
 body.escuro .teclado-numerico button {
   background-color: #3d3d3d;
   color: white;
+  border: 1px solid #4a5568;
 }
 
 body.escuro .teclado-numerico button:active {
   background-color: #4d4d4d;
+}
+
+body.escuro .teclado-numerico .apagar {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+}
+
+body.escuro .teclado-numerico .apagar:active {
+  background-color: #ff5252;
+}
+
+/* Ajustes responsivos para o teclado */
+@media (max-width: 500px) {
+  .teclado-numerico {
+    padding: 8px;
+  }
+
+  .teclado-numerico .teclas {
+    gap: 6px;
+    padding: 0 5px;
+  }
+
+  .teclado-numerico button {
+    padding: 12px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 350px) {
+  .teclado-numerico .teclas {
+    gap: 4px;
+  }
+
+  .teclado-numerico button {
+    padding: 10px;
+    font-size: 16px;
+  }
+}
+
+/* Ajuste para telas maiores */
+@media (min-width: 768px) {
+  .teclado-numerico .teclas {
+    max-width: 500px;
+  }
 }
