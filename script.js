@@ -14,9 +14,58 @@ document.addEventListener('DOMContentLoaded', function () {
   const modoEscuroToggle = document.getElementById('modoEscuroToggle');
 
   // Configurar o campo de pagamento
-  valorPago.setAttribute('type', 'number');
-  valorPago.setAttribute('step', '0.01');
-  valorPago.setAttribute('min', '0');
+  valorPago.setAttribute('type', 'text');
+  valorPago.setAttribute('inputmode', 'numeric');
+  valorPago.setAttribute('pattern', '[0-9]*');
+
+  // Função para formatar valor em reais
+  function formatarValor(valor) {
+    // Remove tudo que não é número
+    valor = valor.replace(/\D/g, '');
+    
+    // Formata o número com R$
+    return `R$ ${valor}`;
+  }
+
+  // Função para obter apenas o número do valor formatado
+  function obterValorNumerico(valor) {
+    return parseFloat(valor.replace(/\D/g, ''));
+  }
+
+  // Evento para formatar o valor enquanto digita
+  valorPago.addEventListener('input', function(e) {
+    let valor = e.target.value.replace(/\D/g, '');
+    
+    if (valor === '') {
+      const total = parseFloat(totalCompra.textContent);
+      troco.textContent = `-R$ ${total.toFixed(2)}`;
+      troco.style.color = '#ff0000';
+      return;
+    }
+
+    // Formata o valor
+    e.target.value = formatarValor(valor);
+    
+    // Calcula o troco
+    const pago = obterValorNumerico(e.target.value);
+    const total = parseFloat(totalCompra.textContent);
+    
+    const calcTroco = pago - total;
+    if (calcTroco < 0) {
+      troco.textContent = `-R$ ${Math.abs(calcTroco).toFixed(2)}`;
+      troco.style.color = '#ff0000';
+    } else {
+      troco.textContent = `R$ ${calcTroco.toFixed(2)}`;
+      troco.style.color = '#4CAF50';
+    }
+  });
+
+  // Previne a entrada de caracteres não numéricos
+  valorPago.addEventListener('keypress', function(e) {
+    if (!/\d/.test(e.key)) {
+      e.preventDefault();
+    }
+  });
 
   botoesMais.forEach((btn, index) => {
     btn.addEventListener('click', () => {
@@ -69,25 +118,6 @@ document.addEventListener('DOMContentLoaded', function () {
   fecharModalBtn.addEventListener('click', () => {
     modalCompra.style.display = 'none';
     gerarCompraBtn.style.display = 'inline-block';
-  });
-
-  valorPago.addEventListener('input', () => {
-    const pago = parseFloat(valorPago.value);
-    const total = parseFloat(totalCompra.textContent);
-    
-    if (valorPago.value === '') {
-      troco.textContent = `-R$ ${total.toFixed(2)}`;
-      troco.style.color = '#ff0000';
-    } else if (!isNaN(pago) && pago >= 0) {
-      const calcTroco = pago - total;
-      if (calcTroco < 0) {
-        troco.textContent = `-R$ ${Math.abs(calcTroco).toFixed(2)}`;
-        troco.style.color = '#ff0000';
-      } else {
-        troco.textContent = `R$ ${calcTroco.toFixed(2)}`;
-        troco.style.color = '#4CAF50';
-      }
-    }
   });
 
   modoEscuroToggle.addEventListener('click', () => {
