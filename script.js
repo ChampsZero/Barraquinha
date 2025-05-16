@@ -14,9 +14,11 @@ document.addEventListener('DOMContentLoaded', function () {
   const modoEscuroToggle = document.getElementById('modoEscuroToggle');
 
   // Configurar o campo de pagamento
-  valorPago.setAttribute('type', 'text');
+  valorPago.setAttribute('type', 'number');
   valorPago.setAttribute('inputmode', 'numeric');
   valorPago.setAttribute('pattern', '[0-9]*');
+  valorPago.setAttribute('min', '0');
+  valorPago.setAttribute('step', '1');
 
   // Função para formatar valor em reais
   function formatarValor(valor) {
