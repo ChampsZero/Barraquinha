@@ -1,375 +1,312 @@
-/* Reset de estilos básicos */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Estilos gerais do body */
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to bottom, #f7fafc, #e2e8f0);
-    padding: 2rem;
-    color: #333;
-  }
-  
-  /* Contêiner principal */
-  .container {
-    max-width: 500px;
-    margin: auto;
-    background-color: white;
-    border-radius: 16px;
-    padding: 2rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Título principal */
-  h1 {
-    text-align: center;
-    color: #2d3748;
-    margin-bottom: 1.5rem;
-  }
-  
-  /* Estilo para os itens do formulário */
-  .item {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1rem;
-  }
-  
-  /* Título de cada item */
-  .item label {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  /* Controles de botão e input de quantidade */
-  .controls {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-  }
-  
-  /* Estilo do campo de input para a quantidade */
-  .produto {
-    width: 60px;
-    text-align: center;
-    font-size: 1.1rem;
-    border: none;
-    background: transparent;
-  }
-  
-  /* Estilo base para os botões */
-  button {
-    width: 40px;
-    height: 40px;
-    font-size: 1.5rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 50%;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  /* Estilo para o botão de adicionar */
-  .azul {
-    background-color: #3182ce; /* Cor azul */
-    border-radius: 50%;
-  }
-  
-  .azul:hover {
-    background-color: #2b6cb0;
-  }
-  
-  .azul:active {
-    background-color: #2c5282;
-  }
-  
-  /* Estilo para o botão de excluir */
-  .vermelho {
-    background-color: #e53e3e; /* Cor vermelha */
-  }
-  
-  .vermelho:hover {
-    background-color: #c53030;
-  }
-  
-  .vermelho:active {
-    background-color: #9b2c2c;
-  }
-  
-  /* Estilo para o botão de gerar compra */
-  .botao-verde {
-    background-color: #4CAF50;
-    padding: 12px 24px;
-    border-radius: 8px;
-  }
-  
-  .botao-verde:hover {
-    background-color: #45a049;
-    transform: scale(1.05);
-  }
-  
-  /* Estilo para os botões de edição e exclusão */
-  .cinza {
-    background-color: #B0BEC5;
-  }
-  
-  .cinza:hover {
-    background-color: #90A4AE;
-    transform: scale(1.05);
-  }
-  
-  .vermelho {
-    background-color: #F44336;
-  }
-  
-  .vermelho:hover {
-    background-color: #E53935;
-    transform: scale(1.05);
-  }
-  
-  /* Estilo para o botão de cancelar */
-  .botao-cancelar {
-    background-color: #f1f1f1;
-    color: #000;
-  }
-  
-  .botao-cancelar:hover {
-    background-color: #ddd;
-    transform: scale(1.05);
-  }
-  
-/* Estilo para o Modal */
-.modal {
-    display: none; 
-    position: fixed; 
-    z-index: 1; /* Fica na frente de outros elementos */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4); /* Fundo escuro com transparência */
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* Modal Conteúdo */
-.modal-conteudo {
-    background: linear-gradient(to top left, #ffffff, #f1f1f1); /* Gradiente suave */
-    margin: 15% auto;
-    padding: 20px;
-    border-radius: 12px; /* Bordas arredondadas */
-    width: 80%;
-    max-width: 500px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    position: relative; /* Para posicionar o botão de fechar */
-    transition: transform 0.3s ease-in-out;
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom, #f7fafc, #e2e8f0);
+  padding: 2rem;
+  color: #333;
+  transition: background 0.3s, color 0.3s;
 }
 
-.modal-conteudo h2 {
-    text-align: center;
-    color: #2d3748; /* Cor mais escura para o título */
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
+.container {
+  max-width: 500px;
+  margin: auto;
+  background-color: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
-.modal-conteudo ul {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 1.5rem;
+h1 {
+  text-align: center;
+  color: #2d3748;
+  margin-bottom: 1.5rem;
 }
 
-.modal-conteudo li {
-    font-size: 1.2rem;
-    color: #333;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #e2e8f0;
+.item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
 }
 
-.modal-conteudo p {
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: #4CAF50; /* Verde para o total */
-    text-align: right;
+.item label {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
 }
 
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.produto {
+  width: 60px;
+  text-align: center;
+  font-size: 1.1rem;
+  border: none;
+  background: transparent;
+}
+
+/* Botões arredondados */
+button.mais, button.menos {
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button.mais {
+  background-color: #1900ff;
+}
+button.mais:hover {
+  background-color: #1900ff;
+}
+
+button.menos {
+  background-color: #ff0000;
+}
+button.menos:hover {
+  background-color: #ff0000;
+}
+
+.titulo {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+/* Botões principais */
 .botoes {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1rem;
-}
-  /* Botão de fechar no canto superior esquerdo */
-#fecharModal {
-    background: transparent;
-    color: #333;
-    border: none;
-    font-size: 2rem;
-    font-weight: bold;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    cursor: pointer;
-    transition: color 0.3s;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
 }
 
-#fecharModal:hover {
-    color: #e53e3e; /* Cor vermelha no hover */
-}
-
-#fecharModal:focus {
-    outline: none; /* Remove o contorno ao clicar no botão */
-}
-  
-  /* Estilo para os resumos de compra */
-  .total {
-    text-align: right;
-    margin-top: 2rem;
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: #2f855a;
-    border-top: 2px solid #e2e8f0;
-    padding-top: 1rem;
-  }
-  
-  /* Responsividade */
-  @media (max-width: 500px) {
-    .container {
-      padding: 1.2rem;
-    }
-  
-    .controls {
-      gap: 5px;
-    }
-  
-    .produto {
-      width: 50px;
-      font-size: 1rem;
-    }
-  
-    button {
-      width: 36px;
-      height: 36px;
-      font-size: 1.3rem;
-    }
-  
-    .total {
-      font-size: 1.1rem;
-    }
-  }
-  
-  /* Estilo para a tabela de produtos */
-  .titulo {
-    text-align: center;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #2d3748;
-  }
-  /* Estilo para os botões principais */
 .botao-verde, .cinza, .preto {
-    background-color: #4CAF50; /* Cor de fundo para o botão verde */
-    color: white; /* Cor do texto */
-    border: none;
-    padding: 12px 24px; /* Ajuste para que o texto não fique cortado */
-    font-size: 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s ease-in-out;
-    display: inline-block; /* Garante que o botão seja exibido de forma inline */
-    text-align: center; /* Garante que o texto esteja centralizado dentro do botão */
-    white-space: nowrap; /* Evita que o texto quebre em várias linhas */
-    width: auto; /* Ajusta a largura automaticamente para o conteúdo */
-    min-width: 150px; /* Largura mínima para que o texto não seja cortado */
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  transition: background-color 0.3s, transform 0.2s ease-in-out;
+  white-space: nowrap;
+  min-width: 120px;
+}
+
+.botao-verde {
+  background-color: #4CAF50;
+}
+.botao-verde:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.cinza {
+  background-color: #B0BEC5;
+}
+.cinza:hover {
+  background-color: #90A4AE;
+  transform: scale(1.05);
+}
+
+.preto {
+  background-color: #333;
+}
+.preto:hover {
+  background-color: #000;
+  transform: scale(1.05);
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-conteudo {
+  background-color: #fff;
+  margin: 5% auto;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 500px;
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Botão X */
+.fechar-x {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: #333;
+  cursor: pointer;
+}
+.fechar-x:hover {
+  color: red;
+}
+
+/* Área de pagamento */
+.pagamento {
+  margin-top: 1.5rem;
+}
+
+.pagamento input {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+/* Modo escuro */
+body.escuro {
+  background: #1a202c;
+  color: #e2e8f0;
+}
+body.escuro .container {
+  background: #2d3748;
+  color: #e2e8f0;
+}
+body.escuro .modal-conteudo {
+  background: #2d3748;
+  color: #e2e8f0;
+}
+body.escuro input {
+ /* background: #4a5568;*/
+  color: #fff;
+  /*border: 1px solid #718096;*/
+}
+
+.modo-escuro-botao {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: #333;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  font-size: 18px;
+}
+.modo-escuro-botao:hover {
+  background: #111;
+}
+
+/* Responsivo */
+@media (max-width: 500px) {
+  .produto {
+    width: 50px;
+    font-size: 1rem;
   }
-  
-  /* Estilo para o botão de excluir (preto) */
-  .preto {
-    background-color: #000000; /* Cor de fundo preta */
-    color: white; /* Cor do texto */
+
+  button.mais, button.menos {
+    width: 36px;
+    height: 36px;
+    font-size: 1.3rem;
   }
-  
-  .preto:hover {
-    background-color: #333333; /* Tom de preto mais escuro ao passar o mouse */
-    transform: scale(1.05);
+
+  .botao-verde, .cinza, .preto {
+    font-size: 14px;
+    min-width: 100px;
+    padding: 10px;
   }
-  
-  /* Efeito de hover nos outros botões */
-  .botao-verde:hover {
-    background-color: #45a049; /* Tom de verde mais escuro */
-    transform: scale(1.05);
-  }
-  
-  .cinza {
-    background-color: #B0BEC5;
-  }
-  
-  .cinza:hover {
-    background-color: #90A4AE;
-    transform: scale(1.05);
-  }
-  /* Botão do modo escuro */
-.modo-escuro-toggle {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: none;
-    font-size: 1.2rem;
-    background-color: #2d3748;
-    color: white;
-    cursor: pointer;
-    z-index: 999;
-    transition: background-color 0.3s ease;
-  }
-  
-  .modo-escuro-toggle:hover {
-    background-color: #1a202c;
-  }
-  
-  /* Tema escuro */
-  body.dark-mode {
-    background: linear-gradient(to bottom, #1a202c, #2d3748);
-    color: #e2e8f0;
-  }
-  
-  body.dark-mode .container {
-    background-color: #2d3748;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-  }
-  
-  body.dark-mode .titulo,
-  body.dark-mode h1 {
-    color: #edf2f7;
-  }
-  
-  body.dark-mode input,
-  body.dark-mode .produto {
-    background-color: #4a5568;
-    color: #f7fafc;
-    border: 1px solid #718096;
-  }
-  
-  body.dark-mode .modal-conteudo {
-    background-color: #2d3748;
-    color: white;
-  }
-  
-  body.dark-mode .botao-cancelar {
-    background-color: #4a5568;
-    color: white;
-  }
-  
-  body.dark-mode .botao-cancelar:hover {
-    background-color: #2c5282;
-  }
-  
-  body.dark-mode .vermelho {
-    background-color: #000;
-  }
-  
-  body.dark-mode .vermelho:hover {
-    background-color: #222;
-  }
-  
+}
+/* Ajuste de cores no modo escuro */
+body.escuro h1,
+body.escuro .titulo,
+body.escuro label,
+body.escuro .total,
+body.escuro li,
+body.escuro .modal-conteudo {
+  color: #e2e8f0 !important;
+}
+
+.teclado-numerico {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #f0f0f0;
+  padding: 10px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.teclado-numerico .teclas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.teclado-numerico button {
+  padding: 15px;
+  font-size: 20px;
+  border: none;
+  background-color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.teclado-numerico button:active {
+  background-color: #e0e0e0;
+}
+
+.teclado-numerico .apagar {
+  background-color: #ff6b6b;
+  color: white;
+}
+
+.teclado-numerico .apagar:active {
+  background-color: #ff5252;
+}
+
+body.escuro .teclado-numerico {
+  background-color: #2d2d2d;
+}
+
+body.escuro .teclado-numerico button {
+  background-color: #3d3d3d;
+  color: white;
+}
+
+body.escuro .teclado-numerico button:active {
+  background-color: #4d4d4d;
+}

@@ -1,107 +1,54 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Barraquinha da Igreja</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
   <div class="container">
-    <button id="toggleModo" class="modo-escuro-toggle">🌙</button>
     <h1>Barraquinha da Igreja</h1>
-    <div id="modalCompra" class="modal">
-        <div class="modal-conteudo">
-          <h2>Resumo da Compra</h2>
-          <ul id="itensCompra"></ul>
-          <p>Total: R$ <span id="totalCompra">0,00</span></p>
-          <div class="botoes">
-            <button type="button" id="editarCompra" class="cinza">Editar Compra</button>
-            <button type="button" id="excluirCompra" class="preto">Excluir Compra</button>
-            <button type="button" id="fecharModal" class="botao-cancelar">X</button>
-          </div>
-        </div>
-      </div>
+    <button id="modoEscuroToggle" class="modo-escuro-botao">🌙</button>
+
     <form id="form">
-      <div class="item">
-        <label class="titulo">Cachorro-Quente (R$5,00)</label>
-        <div class="controls">
-          <button type="button" class="menos vermelho">-</button>
-          <input type="number" min="0" value="0" data-preco="5" class="produto" readonly>
-          <button type="button" class="mais azul">+</button>
-        </div>
-      </div>
-      <div class="item">
-        <label class="titulo">Canjicão (R$8,00)</label>
-        <div class="controls">
-          <button type="button" class="menos vermelho">-</button>
-          <input type="number" min="0" value="0" data-preco="8" class="produto" readonly>
-          <button type="button" class="mais azul">+</button>
-        </div>
-      </div>
-      <div class="item">
-        <label class="titulo">Canjiquinha (R$8,00)</label>
-        <div class="controls">
-          <button type="button" class="menos vermelho">-</button>
-          <input type="number" min="0" value="0" data-preco="8" class="produto" readonly>
-          <button type="button" class="mais azul">+</button>
-        </div>
-      </div>
-      <div class="item">
-        <label class="titulo">Feijão Tropeiro (R$12,00)</label>
-        <div class="controls">
-          <button type="button" class="menos vermelho">-</button>
-          <input type="number" min="0" value="0" data-preco="12" class="produto" readonly>
-          <button type="button" class="mais azul">+</button>
-        </div>
-      </div>
-      <div class="item">
-        <label class="titulo">Pastel (R$8,00)</label>
-        <div class="controls">
-          <button type="button" class="menos vermelho">-</button>
-          <input type="number" min="0" value="0" data-preco="8" class="produto" readonly>
-          <button type="button" class="mais azul">+</button>
-        </div>
-      </div>
-      <div class="item">
-        <label class="titulo">Refrigerante (R$5,00)</label>
-        <div class="controls">
-          <button type="button" class="menos vermelho">-</button>
-          <input type="number" min="0" value="0" data-preco="5" class="produto" readonly>
-          <button type="button" class="mais azul">+</button>
-        </div>
-      </div>
-      <div class="item">
-        <label class="titulo">Inflável 30min (R$15,00)</label>
-        <div class="controls">
-          <button type="button" class="menos vermelho">-</button>
-          <input type="number" min="0" value="0" data-preco="15" class="produto" readonly>
-          <button type="button" class="mais azul">+</button>
-        </div>
-      </div>
-      <div class="item">
-        <label class="titulo">Inflável Festa Toda (R$25,00)</label>
-        <div class="controls">
-          <button type="button" class="menos vermelho">-</button>
-          <input type="number" min="0" value="0" data-preco="25" class="produto" readonly>
-          <button type="button" class="mais azul">+</button>
-        </div>
-      </div>
+      <!-- Produtos -->
+      <div class="item" data-preco="5"><label class="titulo">Cachorro-Quente (R$5,00)</label><div class="controls"><button type="button" class="menos">-</button><input type="number" value="0" class="produto" readonly data-preco="5"><button type="button" class="mais">+</button></div></div>
+      <div class="item" data-preco="8"><label class="titulo">Canjicão (R$8,00)</label><div class="controls"><button type="button" class="menos">-</button><input type="number" value="0" class="produto" readonly data-preco="8"><button type="button" class="mais">+</button></div></div>
+      <div class="item" data-preco="8"><label class="titulo">Canjiquinha (R$8,00)</label><div class="controls"><button type="button" class="menos">-</button><input type="number" value="0" class="produto" readonly data-preco="8"><button type="button" class="mais">+</button></div></div>
+      <div class="item" data-preco="12"><label class="titulo">Feijão Tropeiro (R$12,00)</label><div class="controls"><button type="button" class="menos">-</button><input type="number" value="0" class="produto" readonly data-preco="12"><button type="button" class="mais">+</button></div></div>
+      <div class="item" data-preco="8"><label class="titulo">Pastel (R$8,00)</label><div class="controls"><button type="button" class="menos">-</button><input type="number" value="0" class="produto" readonly data-preco="8"><button type="button" class="mais">+</button></div></div>
+      <div class="item" data-preco="5"><label class="titulo">Refrigerante (R$5,00)</label><div class="controls"><button type="button" class="menos">-</button><input type="number" value="0" class="produto" readonly data-preco="5"><button type="button" class="mais">+</button></div></div>
+      <div class="item" data-preco="15"><label class="titulo">Inflável 30min (R$15,00)</label><div class="controls"><button type="button" class="menos">-</button><input type="number" value="0" class="produto" readonly data-preco="15"><button type="button" class="mais">+</button></div></div>
+      <div class="item" data-preco="25"><label class="titulo">Inflável Festa Toda (R$25,00)</label><div class="controls"><button type="button" class="menos">-</button><input type="number" value="0" class="produto" readonly data-preco="25"><button type="button" class="mais">+</button></div></div>
+
       <div class="botoes">
         <button type="button" id="gerarCompra" class="botao-verde">Gerar Compra</button>
       </div>
-      <div id="resumoCompra" style="display: none;">
-        <h2>Resumo da Compra</h2>
-        <ul id="itensCompra"></ul>
-        <p>Total: R$ <span id="totalCompra">0,00</span></p>
-        <div class="botoes">
-          <button type="button" id="editarCompra" class="cinza">Editar Compra</button>
-          <button type="button" id="excluirCompra" class="vermelho">Excluir Compra</button>
-        </div>
-      </div>
     </form>
   </div>
+
+  <!-- Modal de Resumo -->
+  <div id="modalCompra" class="modal">
+    <div class="modal-conteudo">
+      <button id="fecharModal" class="fechar-x">✖</button>
+      <h2>Resumo da Compra</h2>
+      <ul id="itensCompra"></ul>
+      <p>Total: R$ <span id="totalCompra">0,00</span></p>
+
+      <div class="pagamento">
+        <label for="valorPago">Valor Pago:</label>
+        <input type="number" id="valorPago" placeholder="Digite o valor pago" />
+        <p>Troco: R$ <span id="troco">0,00</span></p>
+      </div>
+
+      <div class="botoes">
+        <button type="button" id="editarCompra" class="cinza">Editar</button>
+        <button type="button" id="excluirCompra" class="preto">Excluir</button>
+      </div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
