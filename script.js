@@ -14,11 +14,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const modoEscuroToggle = document.getElementById('modoEscuroToggle');
 
   // Configurar o campo de pagamento
-  valorPago.setAttribute('type', 'number');
+  valorPago.setAttribute('type', 'tel');
   valorPago.setAttribute('inputmode', 'numeric');
   valorPago.setAttribute('pattern', '[0-9]*');
-  valorPago.setAttribute('min', '0');
-  valorPago.setAttribute('step', '1');
 
   // Função para formatar valor em reais
   function formatarValor(valor) {
@@ -36,10 +34,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Evento para calcular o troco
   valorPago.addEventListener('input', function(e) {
-    const pago = parseFloat(e.target.value) || 0;
+    // Remove qualquer caractere que não seja número
+    let valor = e.target.value.replace(/\D/g, '');
+    e.target.value = valor; // Atualiza o valor do campo com apenas números
+    
+    const pago = parseFloat(valor) || 0;
     const total = parseFloat(totalCompra.textContent);
     
-    if (e.target.value === '') {
+    if (valor === '') {
       troco.textContent = `-R$ ${total.toFixed(2)}`;
       troco.style.color = '#ff0000';
       return;
