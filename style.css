@@ -154,6 +154,9 @@ button.menos:hover {
   max-width: 500px;
   position: relative;
   animation: fadeIn 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 @keyframes fadeIn {
@@ -169,87 +172,106 @@ button.menos:hover {
   background: transparent;
   border: none;
   font-size: 1.5rem;
-  color: #333;
   cursor: pointer;
 }
 .fechar-x:hover {
   color: red;
 }
 
+/* Lista de itens */
+#itensCompra {
+  list-style: none;
+  margin: 1rem 0;
+  padding: 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+#itensCompra li {
+  padding: 0.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 1.1rem;
+}
+
+/* Área de valores */
+.valores-container {
+  background-color: #f7fafc;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  border: 1px solid #e2e8f0;
+}
+
+/* Estilos para valor total e troco */
+#totalCompra, #troco {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2d3748;
+  text-align: center;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  background-color: #f7fafc;
+  border-radius: 8px;
+}
+
+#troco {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #4CAF50;
+  display: block;
+  margin-top: 0.5rem;
+}
+
+body.escuro .valores-container {
+  background-color: #2d3748;
+  border-color: #4a5568;
+}
+
+body.escuro #totalCompra, 
+body.escuro #troco {
+  background-color: #2d3748;
+  color: #e2e8f0;
+}
+
+body.escuro #troco {
+  color: #4CAF50;
+}
+
 /* Área de pagamento */
 .pagamento {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f7fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
 }
 
 .pagamento input {
   width: 100%;
   padding: 0.6rem;
-  margin-top: 0.3rem;
+  margin: 0.5rem 0 1rem 0;
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 1rem;
-  margin-bottom: 0.8rem;
 }
 
-/* Modo escuro */
-body.escuro {
-  background: #1a202c;
-  color: #e2e8f0;
+.pagamento p {
+  margin: 0;
+  font-size: 1.2rem;
+  text-align: center;
 }
-body.escuro .container {
-  background: #2d3748;
-  color: #e2e8f0;
+
+body.escuro .pagamento {
+  background-color: #2d3748;
+  border-color: #4a5568;
 }
-body.escuro .modal-conteudo {
-  background: #2d3748;
-  color: #e2e8f0;
-}
-body.escuro input {
-  background: #2d3748;
+
+body.escuro .pagamento input {
+  background-color: #2d3748;
   color: #fff;
-  /*border: 1px solid #718096;*/
+  border-color: #4a5568;
 }
 
-body.escuro input::placeholder {
-  color: #a0aec0;
-}
-
-.modo-escuro-botao {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  background: #333;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  cursor: pointer;
-  font-size: 18px;
-}
-.modo-escuro-botao:hover {
-  background: #111;
-}
-
-/* Responsivo */
-@media (max-width: 500px) {
-  .produto {
-    width: 50px;
-    font-size: 1rem;
-  }
-
-  button.mais, button.menos {
-    width: 36px;
-    height: 36px;
-    font-size: 1.3rem;
-  }
-
-  .botao-verde, .cinza, .preto {
-    font-size: 14px;
-    min-width: 100px;
-    padding: 10px;
-  }
-}
 /* Ajuste de cores no modo escuro */
 body.escuro h1,
 body.escuro .titulo,
@@ -367,5 +389,85 @@ body.escuro .teclado-numerico .apagar:active {
 @media (min-width: 768px) {
   .teclado-numerico .teclas {
     max-width: 600px;
+  }
+}
+
+/* Modo escuro */
+body.escuro {
+  background: #1a202c;
+  color: #e2e8f0;
+}
+
+body.escuro .container {
+  background: #2d3748;
+  color: #e2e8f0;
+}
+
+body.escuro .modal-conteudo {
+  background: #2d3748;
+  color: #e2e8f0;
+}
+
+body.escuro input {
+  background: #2d3748;
+  color: #fff;
+  /*border: 1px solid #4a5568;*/
+}
+
+body.escuro input::placeholder {
+  color: #a0aec0;
+}
+
+.modo-escuro-botao {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: #333;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.modo-escuro-botao:hover {
+  background: #111;
+}
+
+.botao-admin {
+  position: absolute;
+  right: 60px;
+  top: 10px;
+  background: #4CAF50;
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.botao-admin:hover {
+  background: #45a049;
+}
+
+/* Responsivo */
+@media (max-width: 500px) {
+  .produto {
+    width: 50px;
+    font-size: 1rem;
+  }
+
+  button.mais, button.menos {
+    width: 36px;
+    height: 36px;
+    font-size: 1.3rem;
+  }
+
+  .botao-verde, .cinza, .preto {
+    font-size: 14px;
+    min-width: 100px;
+    padding: 10px;
   }
 }
