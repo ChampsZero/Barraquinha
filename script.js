@@ -14,9 +14,11 @@ document.addEventListener('DOMContentLoaded', function () {
   const modoEscuroToggle = document.getElementById('modoEscuroToggle');
 
   // Configurar o campo de pagamento
-  valorPago.setAttribute('type', 'text');
+  valorPago.setAttribute('type', 'number');
   valorPago.setAttribute('inputmode', 'numeric');
   valorPago.setAttribute('pattern', '[0-9]*');
+  valorPago.setAttribute('min', '0');
+  valorPago.setAttribute('step', '1');
 
   // Função para formatar valor em reais
   function formatarValor(valor) {
@@ -32,23 +34,16 @@ document.addEventListener('DOMContentLoaded', function () {
     return parseFloat(valor.replace(/\D/g, ''));
   }
 
-  // Evento para formatar o valor enquanto digita
+  // Evento para calcular o troco
   valorPago.addEventListener('input', function(e) {
-    let valor = e.target.value.replace(/\D/g, '');
+    const pago = parseFloat(e.target.value) || 0;
+    const total = parseFloat(totalCompra.textContent);
     
-    if (valor === '') {
-      const total = parseFloat(totalCompra.textContent);
+    if (e.target.value === '') {
       troco.textContent = `-R$ ${total.toFixed(2)}`;
       troco.style.color = '#ff0000';
       return;
     }
-
-    // Formata o valor
-    e.target.value = formatarValor(valor);
-    
-    // Calcula o troco
-    const pago = obterValorNumerico(e.target.value);
-    const total = parseFloat(totalCompra.textContent);
     
     const calcTroco = pago - total;
     if (calcTroco < 0) {
@@ -57,13 +52,6 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
       troco.textContent = `R$ ${calcTroco.toFixed(2)}`;
       troco.style.color = '#4CAF50';
-    }
-  });
-
-  // Previne a entrada de caracteres não numéricos
-  valorPago.addEventListener('keypress', function(e) {
-    if (!/\d/.test(e.key)) {
-      e.preventDefault();
     }
   });
 
