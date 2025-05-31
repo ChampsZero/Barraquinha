@@ -112,5 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   modoEscuroToggle.addEventListener('click', () => {
     document.body.classList.toggle('escuro');
+    // Alterna entre os ícones de lua e sol
+    modoEscuroToggle.textContent = document.body.classList.contains('escuro') ? '☀️' : '🌙';
   });
 });
