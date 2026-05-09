@@ -15,7 +15,12 @@ body {
 .container {
   max-width: 500px;
   margin: auto;
-  background-color: white;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.68), rgba(255, 255, 255, 0.68)),
+    url("sagrada-familia.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border-radius: 16px;
   padding: 2rem;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
@@ -255,6 +260,15 @@ body.escuro #troco {
   font-size: 1rem;
 }
 
+.preco-outro {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
 .pagamento p {
   margin: 0;
   font-size: 1.2rem;
@@ -399,7 +413,12 @@ body.escuro {
 }
 
 body.escuro .container {
-  background: #2d3748;
+  background-image:
+    linear-gradient(rgba(45, 55, 72, 0.9), rgba(45, 55, 72, 0.9)),
+    url("sagrada-familia.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: #e2e8f0;
 }
 

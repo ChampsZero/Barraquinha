@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const valorPago = document.getElementById('valorPago');
   const troco = document.getElementById('troco');
   const modoEscuroToggle = document.getElementById('modoEscuroToggle');
+  const precoOutros = document.getElementById('precoOutros');
 
   // Configurar o campo de pagamento
   valorPago.setAttribute('type', 'tel');
@@ -59,14 +60,48 @@ document.addEventListener('DOMContentLoaded', function () {
 
   botoesMais.forEach((btn, index) => {
     btn.addEventListener('click', () => {
-      produtos[index].value = parseInt(produtos[index].value) + 1;
+      const produto = produtos[index];
+      const item = produto.closest('.item');
+      const campoPrecoLivre = item.querySelector('.preco-outro');
+
+      // Para "Outros", o campo principal vira acumulador de valor (R$)
+      if (campoPrecoLivre) {
+        const precoDigitado = parseFloat(campoPrecoLivre.value);
+        if (!Number.isFinite(precoDigitado) || precoDigitado <= 0) {
+          alert('Digite um valor válido em "Outros" antes de adicionar.');
+          campoPrecoLivre.focus();
+          return;
+        }
+        const valorAtual = parseFloat(produto.value) || 0;
+        produto.value = (valorAtual + precoDigitado).toFixed(2);
+        return;
+      }
+
+      produto.value = parseInt(produto.value) + 1;
     });
   });
 
   botoesMenos.forEach((btn, index) => {
     btn.addEventListener('click', () => {
-      let valor = parseInt(produtos[index].value);
-      if (valor > 0) produtos[index].value = valor - 1;
+      const produto = produtos[index];
+      const item = produto.closest('.item');
+      const campoPrecoLivre = item.querySelector('.preco-outro');
+
+      if (campoPrecoLivre) {
+        const precoDigitado = parseFloat(campoPrecoLivre.value);
+        if (!Number.isFinite(precoDigitado) || precoDigitado <= 0) {
+          alert('Digite um valor válido em "Outros" para remover.');
+          campoPrecoLivre.focus();
+          return;
+        }
+        const valorAtual = parseFloat(produto.value) || 0;
+        const novoValor = Math.max(0, valorAtual - precoDigitado);
+        produto.value = novoValor.toFixed(2);
+        return;
+      }
+
+      let valor = parseInt(produto.value);
+      if (valor > 0) produto.value = valor - 1;
     });
   });
 
@@ -75,9 +110,24 @@ document.addEventListener('DOMContentLoaded', function () {
     let total = 0;
 
     produtos.forEach(produto => {
+      const item = produto.closest('.item');
+      const campoPrecoLivre = item.querySelector('.preco-outro');
+
+      if (campoPrecoLivre) {
+        const valorOutros = parseFloat(produto.value) || 0;
+        if (valorOutros > 0) {
+          const nome = produto.parentElement.parentElement.querySelector('.titulo').innerText;
+          const li = document.createElement('li');
+          li.textContent = `${nome} = R$ ${valorOutros.toFixed(2)}`;
+          itensCompra.appendChild(li);
+          total += valorOutros;
+        }
+        return;
+      }
+
       const quantidade = parseInt(produto.value);
       if (quantidade > 0) {
-        const preco = parseFloat(produto.dataset.preco);
+        const preco = parseFloat(produto.dataset.preco || 0);
         const nome = produto.parentElement.parentElement.querySelector('.titulo').innerText;
         const li = document.createElement('li');
         li.textContent = `${nome} - ${quantidade}x = R$ ${(quantidade * preco).toFixed(2)}`;
